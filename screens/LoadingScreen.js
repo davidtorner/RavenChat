@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 import firebase from "firebase";
-import Fire from '../Fire';
 
 export default class LoadingScreen extends React.Component {
     componentDidMount() {

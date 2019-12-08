@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons'
 import GlobalStyles from '../GlobalStyles';
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import Fire from '../Fire';
 import * as ImagePicker from 'expo-image-picker';
 
 const firebase = require('firebase');

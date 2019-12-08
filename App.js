@@ -40,9 +40,9 @@ const AppContainer = createStackNavigator(
             <Ionicons 
             name="ios-add-circle" 
             size={40} 
-            color="#E9446A" 
+            color="#B8BBC4" 
             style={{
-                shadowColor: "#E9446A", 
+                shadowColor: "#5ABCF4", 
                 shadowOffset: { width: 0, height: 0}, 
                 shadowRadius: 10, 
                 shadowOpacity: 0.3  
@@ -73,11 +73,21 @@ const AppContainer = createStackNavigator(
           }
         },
         tabBarOptions: {
-          activeTintColor: "#161F3D",
+          activeTintColor: "#5ABCF4",
           inactiveTintColor: "#B8BBC4",
-          showLabel: false
+          showLabel: false,
+          activeBackgroundColor: "transparent",
+          inactiveBackgroundColor: "transparent",
+          elevation: 0,
+          shadowColor: "transparent",
+          borderTopColor: "transparent"
+        },
+        style: {
+          elevation: 0,
+          shadowColor: "transparent",
+          borderTopColor: "transparent"
         }
-      }
+      },
     ),
     postModal: {
       screen: PostScreen
