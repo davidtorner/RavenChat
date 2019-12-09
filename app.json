@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AirApp",
-    "slug": "AirApp",
+    "name": "RavenChat",
+    "slug": "RavenChat",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [

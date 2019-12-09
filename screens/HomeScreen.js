@@ -1,7 +1,23 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native'
+import { createDrawerNavigator } from "react-navigation-drawer";
+import { createAppContainer } from "react-navigation";
 import { Ionicons } from '@expo/vector-icons'
 import moment from 'moment'
+import { Dimensions } from "react-native";
+import { Feather } from "@expo/vector-icons";
+
+import {
+    ProfileScreen,
+    MessageScreen,
+    ActivityScreen,
+    ListScreen,
+    ReportScreen,
+    StatisticScreen,
+    SignOutScreen
+} from "./";
+
+import SideBar from "../components/SideBar";
 
 posts = [
     {
@@ -90,7 +106,7 @@ posts = [
     }
 ];
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
 
     constructor(props) {
         super(props)
@@ -119,10 +135,7 @@ export default class HomeScreen extends React.Component {
                         </View>
 
                         <View>
-                            <Text>
-                                {/* Adding notification if exists otherwise ignore */}
-                                {post.hasNotification ? post.notifications: ''}
-                            </Text>
+                        {post.hasNotification ? <View style={styles.notifications}><Text style={styles.notificationAmount}>{post.notifications}</Text></View> : null }
                         </View>
 
                     </View>
@@ -142,7 +155,12 @@ export default class HomeScreen extends React.Component {
                     </View> */}
 
                     <View style={styles.headerIcon}>
+                    <TouchableOpacity
+                        style={{ alignItems: "flex-end", marginLeft: 4 }}
+                        onPress={this.props.navigation.openDrawer}
+                    >
                         <Ionicons name="md-menu" size={24} color="#FFF" style={{ alignSelf: 'flex-end' }}></Ionicons>
+                    </TouchableOpacity>
                     </View>
 
                     <View style={styles.headerTitleWrap}>
@@ -163,6 +181,79 @@ export default class HomeScreen extends React.Component {
         )
     }
 }
+
+const DrawerNavigator = createDrawerNavigator(
+    {
+        Message: {
+            screen: HomeScreen,
+            navigationOptions: {
+                title: "Messages",
+                drawerIcon: ({ tintColor }) => <Feather name="message-square" size={16} color={tintColor} />
+            }
+        },
+        Profile: {
+            screen: ProfileScreen,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
+            }
+        },
+        Activity: {
+            screen: ActivityScreen,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => <Feather name="activity" size={16} color={tintColor} />
+            }
+        },
+        List: {
+            screen: ListScreen,
+            navigationOptions: {
+                title: "Lists",
+                drawerIcon: ({ tintColor }) => <Feather name="list" size={16} color={tintColor} />
+            }
+        },
+        Report: {
+            screen: ReportScreen,
+            navigationOptions: {
+                title: "Reports",
+                drawerIcon: ({ tintColor }) => <Feather name="bar-chart" size={16} color={tintColor} />
+            }
+        },
+        Statistic: {
+            screen: StatisticScreen,
+            navigationOptions: {
+                title: "Statistics",
+                drawerIcon: ({ tintColor }) => <Feather name="trending-up" size={16} color={tintColor} />
+            }
+        },
+        SignOut: {
+            screen: SignOutScreen,
+            navigationOptions: {
+                title: "Sign Out",
+                drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />
+            }
+        }
+    },
+    {
+        contentComponent: props => <SideBar {...props} />,
+
+        drawerWidth: Dimensions.get("window").width * 0.85,
+        hideStatusBar: true,
+
+        contentOptions: {
+            activeBackgroundColor: "#212D3B",
+            activeTintColor: "#FFF",
+            inactiveTintColor: "#FFF",
+            itemsContainerStyle: {
+                marginTop: 16,
+                marginHorizontal: 8
+            },
+            itemStyle: {
+                borderRadius: 4
+            }
+        },
+    }
+);
+
+export default createAppContainer(DrawerNavigator);
 
 const styles = StyleSheet.create({
     container: {
@@ -226,12 +317,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#5FA3DE",
         width: 25,
         height: 25,
-        textAlign: "center",
         marginRight: 5,
         marginTop: 5,
-        color: "#FFF",
         alignContent: "flex-end",
         borderRadius: 15
+    },
+    notificationAmount: {
+        color: "#FFF",
+        textAlign: "center",
+        paddingTop: 2.5,
     },
     postImage: {
         width: undefined,
