@@ -24,7 +24,7 @@ posts = [
         id: "1",
         name: "Felan Store",
         text:
-            "🎉 Last of Us: Part II - price: 2…",
+            "🎉 Last of Us: Part II - price: 3…",
         timestamp: 1569109273726,
         avatar: require("../assets/avatars/avatar-1.png"),
         hasNotification: true,
@@ -88,7 +88,7 @@ posts = [
     },
     {
         id: "8",
-        name: "Redhat store!",
+        name: "Anna Ryner",
         text:
             "Amir Masoud joined the gr…",
         timestamp: 1569109273726,
@@ -99,7 +99,7 @@ posts = [
         id: "9",
         name: "Leonardo Oliveira",
         text:
-            "Why you’re here?! It’s invisible dada",
+            "Hey man long time no talk!",
         timestamp: 1569109273726,
         avatar: require("../assets/avatars/avatar-8.png"),
         hasNotification: false,
